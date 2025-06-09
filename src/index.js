@@ -2,12 +2,22 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
+import ResumePage from './ResumePage';
+import ContactPage from './ContactPage';
 import reportWebVitals from './reportWebVitals';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
+
 root.render(
   <React.StrictMode>
-    <App />
+    <Router> {/* Wrap everything in Router to enable routing */}
+      <Routes>  {/* Define your routes here */}
+        <Route path="/" element={<App />} />
+        <Route path="/resume" element={<ResumePage />} />  
+        <Route path="/contact" element={<ContactPage />} />
+      </Routes>
+    </Router>
   </React.StrictMode>
 );
 

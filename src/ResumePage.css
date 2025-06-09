@@ -2,7 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Bebas Neue", sans-serif;
+  font-family: "Vidaloka", serif;
 }
 
 body {
@@ -18,6 +18,7 @@ body {
     rgba(119, 214, 255, 1) 93%
   );
 }
+
 .logo {
   position: absolute;
   top: 8px;
@@ -74,7 +75,7 @@ body {
   color: #fdfdfd;
   font-weight: bold;
   font-size: 1.2rem;
-  padding: 0.7rem;
+  padding: 0rem;
 }
 
 .navbar .nav-container a:hover {
@@ -176,52 +177,78 @@ body {
   display: none;
 }
 
-.home {
-  display: block;
+.resume {
   align-items: center;
   height: 90vh;
   padding: 0 3%;
   width: 100%;
-  background: url("images/kiel1.jpg") no-repeat;
-  background-size: cover;
-  background-position: top;
+  background: url("images/kiel4.jpg") no-repeat;
+  background-size: 15%;
+  background-position: right 0% top -5%;
   background-attachment: scroll;
 }
 
-.home-info {
+.resume-info {
   background: transparent;
 }
 
-.home-info h1 {
-  font-size: 90px;
+.resume-info h1 {
+  font-size: 36px;
   font-weight: 700;
+  text-shadow: rgb(240, 239, 239) 3px 0 2px;
   line-height: 1.5;
-  color: #6cacec;
-  text-shadow: #464343 5px 1px 1px;
+  color: #3c42f5;
   width: 100%;
   white-space: nowrap;
   overflow: hidden;
   animation: typing s, cursor 0.4s step-end infinite alternate;
 }
 
-.home-info h3 {
-  font-size: 32px;
+.resume-info h2 {
+  font-size: 30px;
+  line-height: 1.5;
   font-weight: 700;
+  text-shadow: rgb(46, 45, 45) 3px 0 3px;
   color: rgb(253, 62, 81);
   width: 100%;
-  white-space: nowrap;
+  white-space: normal;
+  overflow: hidden;
+  animation: typing 2s, cursor 0.4s step-end infinite alternate;
+}
+.resume-info .tip {
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-shadow: rgb(5, 5, 5) 3px 0 2px;
+  color: rgb(253, 253, 62);
+  width: 100%;
+  white-space: normal;
   overflow: hidden;
   animation: typing 2s, cursor 0.4s step-end infinite alternate;
 }
 
-.home-info p {
-  font-size: 24px;
-  font-weight: 500;
-  margin: 30px 0 40px;
-  color: rgb(154, 9, 24);
-  max-width: 600px;
+.resume-info .pcs {
+  font-size: 25px;
+  line-height: 1.2;
+  font-weight: 700;
+  text-shadow: rgb(30, 0, 255) 3px 0 2px;
+  color: rgb(255, 255, 255);
   width: 100%;
-  white-space: nowrap;
+  white-space: normal;
+  overflow: hidden;
+  animation: typing 2s, cursor 0.4s step-end infinite alternate;
+}
+
+.resume-info p {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
+  margin: 10px 0;
+  color: rgb(5, 5, 5);
+  max-width: 600px;
+
+  width: 100%;
+  white-space: normal;
   overflow: hidden;
   animation: typing 2s, cursor 0.4s step-end infinite alternate;
 }
@@ -250,9 +277,8 @@ body {
   .navbar .menu-items {
     padding-top: 0;
   }
-
-  .home {
-    background-size: 100% auto;
+  .resume {
+    background: 10% auto;
   }
 }
 
@@ -262,28 +288,73 @@ body {
     padding-top: 0;
   }
 
-  .home {
-    background-size: cover;
-    background-position: right 45% bottom 100%;
+  .resume {
+    background-size: 30%;
+    background-position: right 0% top 0%;
+    background-attachment: scroll;
   }
 
-  .home-info h1 {
-    font-size: 36px;
-    line-height: 1.2;
+  .resume-info h1 {
+    font-size: 28px;
+    font-weight: 700;
+    text-shadow: rgb(240, 239, 239) 3px 0 2px;
+    line-height: 1.5;
+    color: #1119f3;
+    width: 100%;
+    white-space: nowrap;
+    overflow: hidden;
+    animation: typing s, cursor 0.4s step-end infinite alternate;
   }
 
-  .home-info h3 {
-    font-size: 20px;
-    line-height: 1.2;
+  .resume-info h2 {
+    font-size: 18px;
+    line-height: 1.5;
+    font-weight: 700;
+    text-shadow: rgb(46, 45, 45) 3px 0 3px;
+    color: rgb(253, 62, 81);
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    animation: typing 2s, cursor 0.4s step-end infinite alternate;
   }
-
-  .home-info p {
-    margin: 10px 0;
-    text-shadow: 100% rgb(246, 246, 246);
+  .resume-info .tip {
     font-size: 17px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-shadow: rgb(5, 5, 5) 3px 0 2px;
+    color: rgb(253, 240, 62);
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    animation: typing 2s, cursor 0.4s step-end infinite alternate;
+  }
+
+  .resume-info .pcs {
+    font-size: 17px;
+    line-height: 1.2;
+    font-weight: 700;
+    text-shadow: rgb(30, 0, 255) 3px 0 2px;
+    color: rgb(255, 255, 255);
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    animation: typing 2s, cursor 0.4s step-end infinite alternate;
+  }
+
+  .resume-info p {
+    font-size: 12px;
+    font-weight: 500;
+    line-height: 1.2;
+    margin: 10px 0;
+    color: rgb(5, 5, 5);
+    max-width: 600px;
+
+    width: 100%;
+    white-space: normal;
+    overflow: hidden;
+    animation: typing 2s, cursor 0.4s step-end infinite alternate;
   }
 }
-
 @media screen and (min-width: 768px) {
   .navbar .menu-items {
     padding-top: 120px;
