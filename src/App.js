@@ -165,7 +165,7 @@ const App = () => {
   const ProfileCard = () => (
     <div className="profile-card">
       <div className="profile-image-container">
-        <img src="images/kiel4.jpg" alt="Kiel Ongtengco" className="profile-image" />
+        <img src="/images/kiel4.jpg" alt="Kiel Ongtengco" className="profile-image" />
       </div>
       <h3 className="profile-name">Kiel Ongtengco</h3>
       <p className="profile-title">Computer Engineering Student</p>
