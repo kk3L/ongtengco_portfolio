@@ -46,7 +46,13 @@ html {
   align-items: center;
 }
 
+.header-logo {
+  margin-right: 0.75rem;
+}
+
 .logo-button {
+  display: flex;
+  align-items: center;
   font-size: 1.5rem;
   font-weight: bold;
   color: #fff;
@@ -90,10 +96,23 @@ html {
 }
 
 .mobile-nav {
-  display: none;
-  padding: 1rem 1.5rem;
+  padding: 0 1.5rem;
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   flex-direction: column;
+  gap: 0;
+  background: rgba(0, 0, 0, 0.108);
+  border: 1px solid rgba(0, 0, 0, 0.108);
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.mobile-nav.show {
+  max-height: 300px;
+  opacity: 1;
+  display: flex;
+  padding: 1rem 1.5rem;
   gap: 1rem;
 }
 
@@ -106,12 +125,15 @@ html {
   text-transform: uppercase;
   cursor: pointer;
   text-align: left;
+  padding: 0.75rem 0;
   transition: color 0.3s ease;
 }
 
 .mobile-nav-link:hover,
 .mobile-nav-link.active {
   color: #fff;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 0.5rem;
 }
 
 /* Hero Styles */
@@ -321,7 +343,7 @@ html {
 }
 
 .tab-button {
-  flex: 1;
+  flex: 1; 
   padding: 1rem;
   background: none;
   border: none;
@@ -330,6 +352,44 @@ html {
   font-weight: 500;
   cursor: pointer;
   transition: all 0.3s ease;
+}
+
+.tab-button.active {
+  background: #fff;
+  color: #000;
+}
+
+/* Mobile: Horizontal scrolling */
+@media (max-width: 768px) {
+  .tab-buttons {
+    overflow-x: auto;
+    overflow-y: hidden;
+    -webkit-overflow-scrolling: touch; 
+    scrollbar-width: none; 
+    -ms-overflow-style: none;
+    scroll-behavior: smooth;
+  }
+
+  .tab-buttons::-webkit-scrollbar {
+    display: none; 
+  }
+
+  .tab-button {
+    flex: none; 
+    flex-shrink: 0; 
+    white-space: nowrap; 
+    min-width: fit-content;
+    padding: 0.75rem 1.25rem; 
+    font-size: 0.85rem;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 480px) {
+  .tab-button {
+    padding: 0.6rem 1rem;
+    font-size: 0.8rem;
+  }
 }
 
 .tab-button.active {
@@ -400,6 +460,27 @@ html {
   gap: 0.25rem;
   color: #ddd;
   font-size: 0.9rem;
+}
+
+/* University logo styles */
+.university-logo {
+  width: 24px;
+  height: 24px;
+  object-fit: contain;
+  margin-right: 0.5rem;
+  vertical-align: middle;
+}
+
+.education-header-with-logo {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.education-title-with-logo {
+  display: flex;
+  align-items: center;
+  margin-bottom: 0.25rem;
 }
 
 .education-description {

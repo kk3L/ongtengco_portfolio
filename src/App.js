@@ -2,7 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import "./App.css"
-import { Mail, Phone, MapPin, Calendar, ExternalLink, Github, Linkedin, Menu, X, Facebook } from "lucide-react"
+import { Mail, Phone, MapPin, Calendar, ExternalLink, Github, Linkedin, Menu, X, Facebook, Instagram } from "lucide-react"
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("hero")
@@ -92,6 +92,11 @@ const App = () => {
     <header className="header">
       <div className="header-content">
         <button onClick={() => navigateToSection("hero")} className="logo-button">
+          <img 
+          src="/favicon-32x32.png" 
+          alt="Kiel Ongtengco Logo" 
+          className="header-logo"
+        />
           Kiel Ongtengco
         </button>
 
@@ -119,25 +124,23 @@ const App = () => {
         </button>
       </div>
 
-      {/* Mobile Navigation */}
-      {isMenuOpen && (
-        <nav className="mobile-nav">
-          {[
-            { id: "about", label: "About" },
-            { id: "projects", label: "Projects" },
-            { id: "skills", label: "Skills" },
-            { id: "contact", label: "Contact" },
-          ].map((item) => (
-            <button
-              key={item.id}
-              onClick={() => navigateToSection(item.id)}
-              className={`mobile-nav-link ${activeSection === item.id ? "active" : ""}`}
-            >
-              {item.label}
-            </button>
-          ))}
-        </nav>
-      )}
+     {/* Mobile Navigation */}
+<nav className={`mobile-nav ${isMenuOpen ? 'show' : ''}`}>
+  {[
+    { id: "about", label: "About" },
+    { id: "projects", label: "Projects" },
+    { id: "skills", label: "Skills" },
+    { id: "contact", label: "Contact" },
+  ].map((item) => (
+    <button
+      key={item.id}
+      onClick={() => navigateToSection(item.id)}
+      className={`mobile-nav-link ${activeSection === item.id ? "active" : ""}`}
+    >
+      {item.label}
+    </button>
+  ))}
+</nav>
     </header>
   )
 
@@ -185,6 +188,12 @@ const App = () => {
         onClick={() => window.open('https://www.facebook.com/ongtengco.kiell', '_blank')}
         aria-label="Facebook Profile">
           <Facebook size={20} />
+        </button>
+
+        <button className="social-button"
+        onClick={() => window.open('https://www.instagram.com/kyeel.o/', '_blank')}
+        aria-label="Instagram Profile">
+          <Instagram size={20} />
         </button>
       </div>
 
@@ -259,11 +268,19 @@ const App = () => {
         case "education":
           return (
             <div className="tab-content">
+              {/* First Education Item */}
               <div className="education-item">
                 <div className="experience-header">
                   <div>
                     <h4 className="experience-title">Grade School to Senior High</h4>
-                    <p className="experience-company">Paco Catholic School</p>
+                    <div className="education-title-with-logo">
+                      <img 
+                        src="/images/pcs.png" 
+                        alt="Paco Catholic School" 
+                        className="university-logo"
+                      />
+                      <p className="experience-company">Paco Catholic School</p>
+                    </div>
                   </div>
                   <div className="experience-date">
                     <Calendar size={14} />
@@ -271,16 +288,25 @@ const App = () => {
                   </div>
                 </div>
                 <p className="education-description">
-                  Completed basic education from Grade School to Senior High School under the STEM strand, building a strong foundation in science, mathematics, and technology.
-                  Actively participated in academic competitions, group projects, and leadership roles while maintaining consistent academic performance.
+                  Completed basic education from Grade School to Senior High School under the STEM strand, building a
+                  strong foundation in science, mathematics, and technology. Actively participated in academic competitions,
+                  group projects, and leadership roles while maintaining consistent academic performance.
                 </p>
               </div>
 
+              {/* Second Education Item */}
               <div className="education-item">
                 <div className="experience-header">
                   <div>
                     <h4 className="experience-title">Bachelor of Science in Computer Engineering</h4>
-                    <p className="experience-company">Technological Institute of the Philippines - Manila</p>
+                    <div className="education-title-with-logo">
+                      <img 
+                        src="/images/tip.png" 
+                        alt="Technological Institute of the Philippines" 
+                        className="university-logo"
+                      />
+                      <p className="experience-company">Technological Institute of the Philippines - Manila</p>
+                    </div>
                   </div>
                   <div className="experience-date">
                     <Calendar size={14} />
@@ -288,12 +314,12 @@ const App = () => {
                   </div>
                 </div>
                 <p className="education-description">
-                  Currently in Summer of 4th year, focusing on Seminars, Web Development, and preparation for Project Design.
-                  Maintaining strong academic performance while building practical programming skills.
+                  Currently in Summer of 4th year, focusing on Seminars, Web Development, and preparation for Project
+                  Design. Maintaining strong academic performance while building practical programming skills.
                 </p>
               </div>
             </div>
-          )
+  )
 
         case "certifications":
           return (
