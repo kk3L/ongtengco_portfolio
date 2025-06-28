@@ -1,3 +1,20 @@
+/* Font Face Declarations - Updated paths for public/fonts/ */
+@font-face {
+  font-family: "Ginva";
+  src: url("./fonts/Ginva.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: "Noir";
+  src: url("./fonts/Noir.otf") format("opentype");
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,7 +22,6 @@
 }
 
 body {
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", sans-serif;
   background-color: #000;
   color: #fff;
   line-height: 1.6;
@@ -38,7 +54,9 @@ html {
 }
 
 .header-content {
+  font-style: bold;
   max-width: 1200px;
+  font-family: "Noir";
   margin: 0 auto;
   padding: 1rem 1.5rem;
   display: flex;
@@ -53,8 +71,9 @@ html {
 .logo-button {
   display: flex;
   align-items: center;
-  font-size: 1.5rem;
-  font-weight: bold;
+  font-family: "Ginva";
+  font-size: 30px;
+  font-weight: normal;
   color: #fff;
   background: none;
   border: none;
@@ -97,6 +116,7 @@ html {
 
 .mobile-nav {
   padding: 0 1.5rem;
+  font-family: "Noir";
   border-top: 1px solid rgba(255, 255, 255, 0.1);
   flex-direction: column;
   gap: 0;
@@ -151,17 +171,17 @@ html {
   inset: 0;
   background-image: url("../public/images/kielbg.jpg");
   background-size: cover;
-  background-size: 120%; 
+  background-size: 120%;
   background-position: 90% 5%;
   background-attachment: fixed;
-  background-repeat: no-repeat; 
+  background-repeat: no-repeat;
 }
 
 @media (max-width: 768px) {
   .hero-background {
-    background-size: cover; 
-    background-position: left 70% top 30%;  
-    background-attachment: scroll;  
+    background-size: cover;
+    background-position: left 70% top 30%;
+    background-attachment: scroll;
   }
 }
 
@@ -179,19 +199,152 @@ html {
 }
 
 .hero-title {
-  font-size: clamp(2.5rem, 5vw, 4rem);
-  font-weight: bold;
+  font-family: "Ginva";
+  font-size: clamp(2.5rem, 10vw, 4rem);
+  font-weight: normal;
   margin-bottom: 1.5rem;
   line-height: 1.2;
 }
 
-.hero-subtitle {
+.hero-subtitle-multiline {
+  font-family: "Noir";
   font-size: clamp(1rem, 2vw, 1.25rem);
   color: #ddd;
   margin-bottom: 2rem;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
+  position: relative;
+  line-height: 1.6;
+  text-align: center;
+  min-height: 4.8em;
+}
+
+.hero-subtitle-multiline .line {
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+  margin: 0 auto;
+  display: inline-block;
+  width: 0;
+}
+
+/* Only the currently typing line gets the caret */
+.hero-subtitle-multiline .line:nth-child(1) {
+  animation: typing-line1 2s steps(35, end) forwards, caret-line1 1.62s linear forwards;
+}
+
+.hero-subtitle-multiline .line:nth-child(2) {
+  opacity: 0;
+  animation: typing-line2 2s steps(35, end) 2s forwards, caret-line2 1.34s linear 2s forwards;
+}
+
+.hero-subtitle-multiline .line:nth-child(3) {
+  opacity: 0;
+  animation: typing-line3 2s steps(35, end) 4s forwards, caret-line3 8s linear 3.5s forwards, remove-caret 0.1s linear
+    5s forwards;
+}
+
+/* Typing animations */
+@keyframes typing-line1 {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes typing-line2 {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+@keyframes typing-line3 {
+  0% {
+    width: 0;
+    opacity: 1;
+  }
+  100% {
+    width: 100%;
+    opacity: 1;
+  }
+}
+
+/* Caret animations - only show caret on currently typing line */
+@keyframes caret-line1 {
+  0% {
+    border-right: .1em solid white;
+  }
+  99% {
+    border-right: .1em solid white;
+  }
+  100% {
+    border-right: .1em solid transparent;
+  }
+}
+
+@keyframes caret-line2 {
+  0% {
+    border-right: .1em solid transparent;
+  }
+  1% {
+    border-right: .1em solid white;
+  }
+  99% {
+    border-right: .1em solid white;
+  }
+  100% {
+    border-right: .1em solid transparent;
+  }
+}
+
+@keyframes caret-line3 {
+  0% {
+    border-right: .1em solid transparent;
+  }
+  1% {
+    border-right: .1em solid white;
+  }
+  99% {
+    border-right: .1em solid white;
+  }
+  100% {
+    border-right: .1em solid white;
+  }
+}
+
+/* Remove caret completely after typing is done */
+@keyframes remove-caret {
+  0% {
+    border-right: .1em solid white;
+  }
+  100% {
+    border-right: .1em solid transparent;
+  }
+}
+
+@media (max-width: 768px) {
+  .hero-subtitle-multiline .line:nth-child(1) {
+    animation: typing-line1 1.8s steps(25, end) forwards, caret-line1 1.8s linear forwards;
+  }
+
+  .hero-subtitle-multiline .line:nth-child(2) {
+    animation: typing-line2 1.8s steps(30, end) 2s forwards, caret-line2 1.8s linear 2s forwards;
+  }
+
+  .hero-subtitle-multiline .line:nth-child(3) {
+    animation: typing-line3 1.8s steps(20, end) 4s forwards, caret-line3 1.8s linear 4s forwards, remove-caret 0.1s
+      linear 5.8s forwards;
+  }
 }
 
 .hero-button {
@@ -237,13 +390,14 @@ html {
 
 .section-title {
   font-size: 2.5rem;
-  font-weight: bold;
+  font-family: "Noir";
+  font-weight: normal;
   text-align: center;
   margin-bottom: 0.5rem;
 }
 
 .section-underline {
-  width: 4rem;
+  width: 10rem;
   height: 3px;
   background: #fff;
   margin: 0 auto 3rem;
@@ -252,6 +406,7 @@ html {
 /* About Section */
 .about-content {
   display: grid;
+  font-style: bold;
   grid-template-columns: 1fr;
   gap: 2rem;
 }
@@ -261,7 +416,8 @@ html {
   backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
-  padding: 2rem;
+  font-family: "Noir";
+  padding: 3rem;
   text-align: center;
 }
 
@@ -280,14 +436,15 @@ html {
 }
 
 .profile-name {
-  font-size: 1.5rem;
+  font-size: 2rem;
+  font-family: "Ginva";
   font-weight: bold;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0rem;
 }
 
 .profile-title {
   color: #ccc;
-  margin-bottom: 1.5rem;
+  margin-bottom: .5rem;
 }
 
 .social-buttons {
@@ -312,7 +469,7 @@ html {
 }
 
 .social-button:hover {
-  background: rgba(255, 255, 255, 0.2);
+  background: rgba(255, 255, 255, 0.211);
 }
 
 .contact-info {
@@ -331,19 +488,22 @@ html {
 
 .resume-section {
   background: rgba(255, 255, 255, 0.05);
+  font-family: "Noir";
   backdrop-filter: blur(10px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  border: 2px solid rgb(135, 127, 127);
   border-radius: 1rem;
   overflow: hidden;
 }
 
 .tab-buttons {
   display: flex;
+  font-family: "Noir";
+  font-style: bold;
   background: rgba(255, 255, 255, 0.1);
 }
 
 .tab-button {
-  flex: 1; 
+  flex: 1;
   padding: 1rem;
   background: none;
   border: none;
@@ -364,22 +524,22 @@ html {
   .tab-buttons {
     overflow-x: auto;
     overflow-y: hidden;
-    -webkit-overflow-scrolling: touch; 
-    scrollbar-width: none; 
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
     -ms-overflow-style: none;
     scroll-behavior: smooth;
   }
 
   .tab-buttons::-webkit-scrollbar {
-    display: none; 
+    display: none;
   }
 
   .tab-button {
-    flex: none; 
-    flex-shrink: 0; 
-    white-space: nowrap; 
+    flex: none;
+    flex-shrink: 0;
+    white-space: nowrap;
     min-width: fit-content;
-    padding: 0.75rem 1.25rem; 
+    padding: 0.75rem 1.25rem;
     font-size: 0.85rem;
   }
 }
@@ -399,6 +559,18 @@ html {
 
 .resume-content {
   padding: 2rem;
+  transition: all 0.3s ease;
+}
+
+/* Tab transition animations */
+.resume-content.fade-out {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+.resume-content.fade-in {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .tab-content {
@@ -494,17 +666,23 @@ html {
   border-radius: 0.75rem;
   padding: 1rem;
   margin-bottom: 0.75rem;
-}
-
-.certification-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .certification-title {
   font-size: 0.9rem;
   font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: inline-block;
+  position: relative;
+  z-index: 10;
+}
+
+.certification-title:hover {
+  color: #4a90e2;
+  text-decoration: underline;
+  transform: translateX(5px);
 }
 
 .certification-issuer {
@@ -522,6 +700,7 @@ html {
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  font-family: "Noir";
   gap: 2rem;
 }
 
@@ -541,13 +720,13 @@ html {
 }
 
 .project-title {
-  font-size: 1.25rem;
+  font-size: 1.3rem;
   font-weight: bold;
   margin-bottom: 0.75rem;
 }
 
 .project-description {
-  color: #ddd;
+  color: #dddddd89;
   margin-bottom: 1rem;
   line-height: 1.6;
 }
@@ -565,6 +744,7 @@ html {
 .skills-grid {
   display: flex;
   flex-wrap: wrap;
+  font-family: "Noir";
   justify-content: center;
   gap: 0.75rem;
   max-width: 800px;
@@ -592,6 +772,7 @@ html {
 .contact-card {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(10px);
+  font-family: "Noir";
   border: 1px solid rgba(255, 255, 255, 0.1);
   border-radius: 1rem;
   padding: 2rem;
@@ -676,6 +857,25 @@ html {
 .contact-button:hover {
   background: #e0e0e0;
   transform: translateY(-2px);
+}
+
+.form-status {
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  font-size: 0.9rem;
+  text-align: center;
+}
+
+.form-status.success {
+  background: rgba(34, 197, 94, 0.1);
+  border: 1px solid rgba(34, 197, 94, 0.3);
+  color: #22c55e;
+}
+
+.form-status.error {
+  background: rgba(239, 68, 68, 0.1);
+  border: 1px solid rgba(239, 68, 68, 0.3);
+  color: #ef4444;
 }
 
 /* Footer */

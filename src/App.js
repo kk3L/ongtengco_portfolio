@@ -2,12 +2,25 @@
 
 import { useEffect, useRef, useState } from "react"
 import "./App.css"
-import { Mail, Phone, MapPin, Calendar, ExternalLink, Github, Linkedin, Menu, X, Facebook, Instagram } from "lucide-react"
+import {
+  Mail,
+  Phone,
+  MapPin,
+  Calendar,
+  ExternalLink,
+  Github,
+  Linkedin,
+  Menu,
+  X,
+  Facebook,
+  Instagram,
+} from "lucide-react"
 
 const App = () => {
   const [activeSection, setActiveSection] = useState("hero")
   const [activeTab, setActiveTab] = useState("summary")
   const [isMenuOpen, setIsMenuOpen] = useState(false)
+  const [isTabChanging, setIsTabChanging] = useState(false)
 
   // Section refs
   const heroRef = useRef(null)
@@ -15,6 +28,13 @@ const App = () => {
   const projectsRef = useRef(null)
   const skillsRef = useRef(null)
   const contactRef = useRef(null)
+
+  // Certification documents data
+  const certificationDocs = {
+    "CCNAv7: Introduction to Networks": "/docs/CCNAv7 Introduction to Networks.pdf",
+    "CCNAv7: Switching, Routing, and Wireless Essentials": "/docs/CCNAv7 Switching Routing and Wireless Essentials.pdf",
+    "EF SET English Cerificate 69/100 (C1 Advanced)": "/docs/EF SET Certificate.pdf",
+  }
 
   // Handle hash navigation
   useEffect(() => {
@@ -88,15 +108,30 @@ const App = () => {
     setIsMenuOpen(false)
   }
 
+  const openCertificationPDF = (certTitle) => {
+    const pdfUrl = certificationDocs[certTitle]
+    if (pdfUrl) {
+      window.open(pdfUrl, "_blank", "noopener,noreferrer")
+    } else {
+      console.log("PDF not found for:", certTitle)
+    }
+  }
+
+  const changeTab = (newTab) => {
+    if (newTab !== activeTab) {
+      setIsTabChanging(true)
+      setTimeout(() => {
+        setActiveTab(newTab)
+        setTimeout(() => setIsTabChanging(false), 50)
+      }, 150)
+    }
+  }
+
   const Header = () => (
     <header className="header">
       <div className="header-content">
         <button onClick={() => navigateToSection("hero")} className="logo-button">
-          <img 
-          src="/favicon-32x32.png" 
-          alt="Kiel Ongtengco Logo" 
-          className="header-logo"
-        />
+          <img src="/favicon-32x32.png" alt="Kiel Ongtengco Logo" className="header-logo" />
           Kiel Ongtengco
         </button>
 
@@ -124,23 +159,23 @@ const App = () => {
         </button>
       </div>
 
-     {/* Mobile Navigation */}
-<nav className={`mobile-nav ${isMenuOpen ? 'show' : ''}`}>
-  {[
-    { id: "about", label: "About" },
-    { id: "projects", label: "Projects" },
-    { id: "skills", label: "Skills" },
-    { id: "contact", label: "Contact" },
-  ].map((item) => (
-    <button
-      key={item.id}
-      onClick={() => navigateToSection(item.id)}
-      className={`mobile-nav-link ${activeSection === item.id ? "active" : ""}`}
-    >
-      {item.label}
-    </button>
-  ))}
-</nav>
+      {/* Mobile Navigation */}
+      <nav className={`mobile-nav ${isMenuOpen ? "show" : ""}`}>
+        {[
+          { id: "about", label: "About" },
+          { id: "projects", label: "Projects" },
+          { id: "skills", label: "Skills" },
+          { id: "contact", label: "Contact" },
+        ].map((item) => (
+          <button
+            key={item.id}
+            onClick={() => navigateToSection(item.id)}
+            className={`mobile-nav-link ${activeSection === item.id ? "active" : ""}`}
+          >
+            {item.label}
+          </button>
+        ))}
+      </nav>
     </header>
   )
 
@@ -151,13 +186,15 @@ const App = () => {
       </div>
       <div className="hero-content">
         <h1 className="hero-title">
-          Crafting Elegant
+          Crafting Elegance
           <br />
-          Experiences Through Code
+          through Code
         </h1>
-        <p className="hero-subtitle">
-          I'm a passionate developer focusing on clean, modern web design and impactful projects.
-        </p>
+        <div className="hero-subtitle-multiline">
+          <div className="line">I'm a passionate developer focusing on</div>
+          <div className="line">clean, modern web design and impactful</div>
+          <div className="line">projects that make a difference.</div>
+        </div>
         <button onClick={() => navigateToSection("projects")} className="hero-button">
           View My Work
         </button>
@@ -174,25 +211,33 @@ const App = () => {
       <p className="profile-title">Computer Engineering Student</p>
 
       <div className="social-buttons">
-        <button className="social-button"
-        onClick={() => window.open('https://github.com/kk3L', '_blank')}
-        aria-label="GitHub Profile">
+        <button
+          className="social-button"
+          onClick={() => window.open("https://github.com/kk3L", "_blank")}
+          aria-label="GitHub Profile"
+        >
           <Github size={20} />
         </button>
-        <button className="social-button"
-        onClick={() => window.open('https://www.linkedin.com/in/kiel-ongtengco-a847b11b7', '_blank')}
-        aria-label="LinkedIn Profile" >
+        <button
+          className="social-button"
+          onClick={() => window.open("https://www.linkedin.com/in/kiel-ongtengco-a847b11b7", "_blank")}
+          aria-label="LinkedIn Profile"
+        >
           <Linkedin size={20} />
         </button>
-        <button className="social-button"
-        onClick={() => window.open('https://www.facebook.com/ongtengco.kiell', '_blank')}
-        aria-label="Facebook Profile">
+        <button
+          className="social-button"
+          onClick={() => window.open("https://www.facebook.com/ongtengco.kiell", "_blank")}
+          aria-label="Facebook Profile"
+        >
           <Facebook size={20} />
         </button>
 
-        <button className="social-button"
-        onClick={() => window.open('https://www.instagram.com/kyeel.o/', '_blank')}
-        aria-label="Instagram Profile">
+        <button
+          className="social-button"
+          onClick={() => window.open("https://www.instagram.com/kyeel.o/", "_blank")}
+          aria-label="Instagram Profile"
+        >
           <Instagram size={20} />
         </button>
       </div>
@@ -200,7 +245,7 @@ const App = () => {
       <div className="contact-info">
         <div className="contact-item">
           <MapPin size={16} />
-          <span>Philippines</span>
+          <span>Manila, Philippines</span>
         </div>
         <div className="contact-item">
           <Mail size={16} />
@@ -229,10 +274,11 @@ const App = () => {
               <h3 className="tab-content-title">Professional Summary</h3>
               <div className="tab-content-text">
                 <p>
-                  Passionate Computer Engineering student with a strong aptitude for logic and problem-solving. 
-                  Skilled in designing and analyzing logic circuits, breadboarding, and networking concepts. 
-                  Adequate in web development, with hands-on experience building functional, user-focused applications using modern tools like JavaScript and React. 
-                  Driven to combine hardware and software knowledge to create efficient, reliable solutions.
+                  Passionate Computer Engineering student with a strong aptitude for logic and problem-solving. Skilled
+                  in designing and analyzing logic circuits, breadboarding, and networking concepts. Adequate in web
+                  development, with hands-on experience building functional, user-focused applications using modern
+                  tools like JavaScript and React. Driven to combine hardware and software knowledge to create
+                  efficient, reliable solutions.
                 </p>
                 <p>
                   I thrive on solving complex problems and turning ideas into beautiful, functional digital experiences.
@@ -257,9 +303,18 @@ const App = () => {
                   </div>
                 </div>
                 <div className="experience-details">
-                  <p>• Strengthened community engagement by utilizing social media platforms to promote projects and disseminate information</p>
-                  <p>• Mobilized and coordinated volunteers for outreach projects, fostering teamwork and active youth participation</p>
-                  <p>• Resolved conflicts and built consensus among youth groups, demonstrating strong interpersonal and decision-making skills</p>
+                  <p>
+                    • Strengthened community engagement by utilizing social media platforms to promote projects and
+                    disseminate information
+                  </p>
+                  <p>
+                    • Mobilized and coordinated volunteers for outreach projects, fostering teamwork and active youth
+                    participation
+                  </p>
+                  <p>
+                    • Resolved conflicts and built consensus among youth groups, demonstrating strong interpersonal and
+                    decision-making skills
+                  </p>
                 </div>
               </div>
             </div>
@@ -272,14 +327,12 @@ const App = () => {
               <div className="education-item">
                 <div className="experience-header">
                   <div>
-                    <h4 className="experience-title">Grade School to Senior High</h4>
+                    <h4 className="experience-title">Elementary to Senior High School</h4>
                     <div className="education-title-with-logo">
-                      <img 
-                        src="/images/pcs.png" 
-                        alt="Paco Catholic School" 
-                        className="university-logo"
-                      />
-                      <p className="experience-company">Paco Catholic School</p>
+                      <img src="/images/pcs.png" alt="Paco Catholic School" className="university-logo" />
+                      <a href="https://www.facebook.com/PaconianOfficial/" target="_blank" rel="noopener noreferrer">
+                        <p className="experience-company">Paco Catholic School</p>
+                      </a>
                     </div>
                   </div>
                   <div className="experience-date">
@@ -289,8 +342,8 @@ const App = () => {
                 </div>
                 <p className="education-description">
                   Completed basic education from Grade School to Senior High School under the STEM strand, building a
-                  strong foundation in science, mathematics, and technology. Actively participated in academic competitions,
-                  group projects, and leadership roles while maintaining consistent academic performance.
+                  strong foundation in science, mathematics, and technology. Actively participated in academic
+                  competitions, group projects, and leadership roles while maintaining consistent academic performance.
                 </p>
               </div>
 
@@ -300,12 +353,14 @@ const App = () => {
                   <div>
                     <h4 className="experience-title">Bachelor of Science in Computer Engineering</h4>
                     <div className="education-title-with-logo">
-                      <img 
-                        src="/images/tip.png" 
-                        alt="Technological Institute of the Philippines" 
+                      <img
+                        src="/images/tip.png"
+                        alt="Technological Institute of the Philippines"
                         className="university-logo"
                       />
-                      <p className="experience-company">Technological Institute of the Philippines - Manila</p>
+                      <a href="https://tip.edu.ph/" target="_blank" rel="noopener noreferrer">
+                        <p className="experience-company">Technological Institute of the Philippines - Manila</p>
+                      </a>
                     </div>
                   </div>
                   <div className="experience-date">
@@ -319,7 +374,7 @@ const App = () => {
                 </p>
               </div>
             </div>
-  )
+          )
 
         case "certifications":
           return (
@@ -327,7 +382,12 @@ const App = () => {
               <div className="certification-item">
                 <div className="certification-header">
                   <div>
-                    <h4 className="certification-title">CCNAv7: Introduction to Networks</h4>
+                    <h4
+                      className="certification-title"
+                      onClick={() => openCertificationPDF("CCNAv7: Introduction to Networks")}
+                    >
+                      CCNAv7: Introduction to Networks
+                    </h4>
                     <p className="certification-issuer">Cisco Networking Academy</p>
                   </div>
                   <span className="certification-year">May 2024</span>
@@ -337,17 +397,27 @@ const App = () => {
               <div className="certification-item">
                 <div className="certification-header">
                   <div>
-                    <h4 className="certification-title">CCNAv7: Switching, Routing, and Wireless Essentials</h4>
+                    <h4
+                      className="certification-title"
+                      onClick={() => openCertificationPDF("CCNAv7: Switching, Routing, and Wireless Essentials")}
+                    >
+                      CCNAv7: Switching, Routing, and Wireless Essentials
+                    </h4>
                     <p className="certification-issuer">Cisco Networking Academy</p>
                   </div>
                   <span className="certification-year">December 2024</span>
                 </div>
               </div>
-              
+
               <div className="certification-item">
                 <div className="certification-header">
                   <div>
-                    <h4 className="certification-title">EF SET English Cerificate 69/100 (C1 Advanced)</h4>
+                    <h4
+                      className="certification-title"
+                      onClick={() => openCertificationPDF("EF SET English Cerificate 69/100 (C1 Advanced)")}
+                    >
+                      EF SET English Cerificate 69/100 (C1 Advanced)
+                    </h4>
                     <p className="certification-issuer">EF SET</p>
                   </div>
                   <span className="certification-year">April 2025</span>
@@ -361,7 +431,7 @@ const App = () => {
       }
     }
 
-    return <div className="resume-content">{renderContent()}</div>
+    return <div className={`resume-content ${isTabChanging ? "fade-out" : "fade-in"}`}>{renderContent()}</div>
   }
 
   const About = () => (
@@ -375,21 +445,21 @@ const App = () => {
 
           <div className="resume-section">
             <div className="tab-buttons">
-              <TabButton title="Summary" isActive={activeTab === "summary"} onPress={() => setActiveTab("summary")} />
+              <TabButton title="Summary" isActive={activeTab === "summary"} onPress={() => changeTab("summary")} />
               <TabButton
                 title="Experience"
                 isActive={activeTab === "experience"}
-                onPress={() => setActiveTab("experience")}
+                onPress={() => changeTab("experience")}
               />
               <TabButton
                 title="Education"
                 isActive={activeTab === "education"}
-                onPress={() => setActiveTab("education")}
+                onPress={() => changeTab("education")}
               />
               <TabButton
                 title="Certifications"
                 isActive={activeTab === "certifications"}
-                onPress={() => setActiveTab("certifications")}
+                onPress={() => changeTab("certifications")}
               />
             </div>
 
@@ -470,8 +540,8 @@ const App = () => {
             "Schematic Design",
             "Debugging & Troubleshooting",
             "Technical Documentation",
-            "Critical Thinking"
-            ].map((skill, index) => (
+            "Critical Thinking",
+          ].map((skill, index) => (
             <SkillBadge key={index} skill={skill} />
           ))}
         </div>
@@ -479,109 +549,102 @@ const App = () => {
     </section>
   )
 
-const Contact = () => {
-  const [status, setStatus] = useState('')
-  const [isSubmitting, setIsSubmitting] = useState(false)
+  const Contact = () => {
+    const [status, setStatus] = useState("")
+    const [isSubmitting, setIsSubmitting] = useState(false)
 
-  const handleSubmit = async (e) => {
-    e.preventDefault()
-    setIsSubmitting(true)
-    setStatus('Sending...')
-    
-    const form = e.target
-    const formData = new FormData(form)
-    
-    try {
-      const response = await fetch('https://formspree.io/f/mrbkywpo', {
-        method: 'POST',
-        body: formData,
-        headers: {
-          'Accept': 'application/json'
+    const handleSubmit = async (e) => {
+      e.preventDefault()
+      setIsSubmitting(true)
+      setStatus("Sending...")
+
+      const form = e.target
+      const formData = new FormData(form)
+
+      try {
+        const response = await fetch("https://formspree.io/f/mrbkywpo", {
+          method: "POST",
+          body: formData,
+          headers: {
+            Accept: "application/json",
+          },
+        })
+
+        if (response.ok) {
+          setStatus("Message sent successfully! 🎉")
+          form.reset()
+        } else {
+          setStatus("Oops! There was a problem sending your message. Please try again.")
         }
-      })
-      
-      if (response.ok) {
-        setStatus('Message sent successfully! 🎉')
-        form.reset()
-      } else {
-        setStatus('Oops! There was a problem sending your message. Please try again.')
+      } catch (error) {
+        setStatus("Network error. Please check your connection and try again.")
+      } finally {
+        setIsSubmitting(false)
       }
-    } catch (error) {
-      setStatus('Network error. Please check your connection and try again.')
-    } finally {
-      setIsSubmitting(false)
     }
-  }
 
-  return (
-    <section ref={contactRef} className="contact">
-      <div className="container">
-        <h2 className="section-title">Contact Me</h2>
-        <div className="section-underline" />
+    return (
+      <section ref={contactRef} className="contact">
+        <div className="container">
+          <h2 className="section-title">Contact Me</h2>
+          <div className="section-underline" />
 
-        <div className="contact-card">
-          <h3 className="contact-card-title">Let's work together!</h3>
-          <p className="contact-card-text">I'm always interested in new opportunities and exciting projects.</p>
+          <div className="contact-card">
+            <h3 className="contact-card-title">Let's work together!</h3>
+            <p className="contact-card-text">I'm always interested in new opportunities and exciting projects.</p>
 
-          <form className="contact-form" onSubmit={handleSubmit}>
-            <div className="form-row">
+            <form className="contact-form" onSubmit={handleSubmit}>
+              <div className="form-row">
+                <div className="form-group">
+                  <label htmlFor="name">Name</label>
+                  <input
+                    type="text"
+                    id="name"
+                    name="name"
+                    placeholder="Your name"
+                    className="form-input"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+                <div className="form-group">
+                  <label htmlFor="email">Email</label>
+                  <input
+                    type="email"
+                    id="email"
+                    name="email"
+                    placeholder="you@example.com"
+                    className="form-input"
+                    required
+                    disabled={isSubmitting}
+                  />
+                </div>
+              </div>
               <div className="form-group">
-                <label htmlFor="name">Name</label>
-                <input 
-                  type="text" 
-                  id="name" 
-                  name="name"
-                  placeholder="Your name" 
-                  className="form-input" 
-                  required 
+                <label htmlFor="message">Message</label>
+                <textarea
+                  id="message"
+                  name="message"
+                  rows={5}
+                  placeholder="Write your message here..."
+                  className="form-input form-textarea"
+                  required
                   disabled={isSubmitting}
                 />
               </div>
-              <div className="form-group">
-                <label htmlFor="email">Email</label>
-                <input 
-                  type="email" 
-                  id="email" 
-                  name="email"
-                  placeholder="you@example.com" 
-                  className="form-input" 
-                  required 
-                  disabled={isSubmitting}
-                />
-              </div>
-            </div>
-            <div className="form-group">
-              <label htmlFor="message">Message</label>
-              <textarea
-                id="message"
-                name="message"
-                rows={5}
-                placeholder="Write your message here..."
-                className="form-input form-textarea"
-                required
-                disabled={isSubmitting}
-              />
-            </div>
-            
-            <button 
-              type="submit" 
-              className="contact-button" 
-              disabled={isSubmitting}
-            >
-              {isSubmitting ? 'Sending...' : 'Send Message'}
-            </button>
-            
+
+              <button type="submit" className="contact-button" disabled={isSubmitting}>
+                {isSubmitting ? "Sending..." : "Send Message"}
+              </button>
+            </form>
             {status && (
-              <div className={`form-status ${status.includes('successfully') ? 'success' : 'error'}`}>
-                {status}
-              </div>
+              <div className={`form-status ${status.includes("successfully") ? "success" : "error"}`}>{status}</div>
             )}
-          </form>
+          </div>
         </div>
-      </div>
-    </section>
-  )
-}
+      </section>
+    )
+  }
 
   const Footer = () => (
     <footer className="footer">
