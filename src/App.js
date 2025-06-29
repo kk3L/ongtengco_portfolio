@@ -489,9 +489,22 @@ const App = () => {
 
         <div className="projects-grid">
           <ProjectCard
-            title="Personal Portfolio Website"
-            description="A responsive portfolio built with React showcasing modern design principles and smooth interactions with hash-based navigation."
-            onPress={() => {}}
+            title={
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <img 
+                    src="https://mood-munch.netlify.app/favicon.ico" 
+                    alt="MoodMunch logo" 
+                    style={{ height: '32px', width: 'auto' }}
+                  />
+                  MoodMunch
+            </div>}
+            description="A responsive React web app that recommends meals based on your mood, local weather, or pure randomness. 
+            It uses the Spoonacular API to fetch real-time recipes, images, and nutritional info. 
+            This project highlights my skills in API integration, state management, and responsive UI design 
+            using React and modern frontend best practices."
+            onPress={() => {
+              window.open('https://mood-munch.netlify.app/', '_blank', 'noopener,noreferrer');
+            }}
           />
           <ProjectCard
             title="Task Manager Application"
