@@ -507,12 +507,17 @@ const App = () => {
             }}
           />
           <ProjectCard
-            title="Task Manager Application"
-            description="A web app to organize and track tasks with a clean UI, local storage persistence, and responsive design."
-            onPress={() => {}}
+            title="2 Bit Adder (7 Segment)"
+            description="Built a logic circuit that adds two 2‑bit numbers and displays the result using LEDs and a 7‑segment display. I
+            designed the truth table, optimized Boolean logic, and implemented the system with basic gates and a BCD decoder. 
+            This project deepened my understanding of digital logic, circuit design, and hardware troubleshooting 
+            while reinforcing hands-on skills in schematic building and real-world signal testing."
+            onPress={() => {
+              window.open('/docs/2 Bit Adder with LED and 7 Segment Display.pdf', '_blank', 'noopener,noreferrer');
+            }}
           />
           <ProjectCard
-            title="Basketball Stats Tracker"
+            title="Basketball Stats Tracker (Placeholder)"
             description="A sports application for tracking basketball statistics and player performance, combining my passion for coding and basketball."
             onPress={() => {}}
           />
