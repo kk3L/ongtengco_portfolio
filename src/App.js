@@ -517,9 +517,23 @@ const App = () => {
             }}
           />
           <ProjectCard
-            title="Basketball Stats Tracker (Placeholder)"
-            description="A sports application for tracking basketball statistics and player performance, combining my passion for coding and basketball."
-            onPress={() => {}}
+            title={
+            <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
+                  <img 
+                    src="https://moneygersparking.netlify.app/favicon2.png" 
+                    alt="ParkMoneyger logo" 
+                    style={{ height: '48px', width: 'auto' }}
+                  />
+                  ParkMoneyger
+            </div>}
+            description="A responsive React app for managing mall parking without sensors. 
+            It features manual slot assignment, real-time availability, and ticket printing. 
+            I led the project concept, designed the UI, built key features, and handled documentation. 
+            This highlights my skills in frontend development, user-focused design, 
+            and practical system implementation."
+            onPress={() => {
+              window.open('https://moneygersparking.netlify.app/login', '_blank', 'noopener,noreferrer');
+            }}
           />
         </div>
       </div>
